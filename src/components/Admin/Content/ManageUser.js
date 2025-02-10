@@ -8,14 +8,17 @@ import { getAllUsers } from '../../../services/ApiService';
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import { set } from "lodash";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = () => {
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalViewUser, setShowModalViewUser] = useState(false);
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     const [dataView, setDataView] = useState({});
+    const [dataDelete, setDataDelete] = useState({});
     const [listUsers, setListUsers] = useState([]);
 
     // ComponentDidMount
@@ -42,6 +45,11 @@ const ManageUser = () => {
         setDataView(user);
     }
 
+    const handleClickBtnDelete = (user) => {
+        setShowModalDeleteUser(true);
+        setDataDelete(user);
+    }
+
 
     return (
         <div className="manage-user-container">
@@ -60,6 +68,7 @@ const ManageUser = () => {
                         listUsers={listUsers}
                         handleClickBtnUpdate={handleClickBtnUpdate}
                         handleClickBtnView={handleClickBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
                     />
                 </div>
                 <ModalCreateUser
@@ -77,6 +86,11 @@ const ManageUser = () => {
                     show={showModalViewUser}
                     setShow={setShowModalViewUser}
                     dataView={dataView}
+                />
+                <ModalDeleteUser
+                    show={showModalDeleteUser}
+                    setShow={setShowModalDeleteUser}
+                    dataDelete={dataDelete}
                 />
             </div>
         </div>
