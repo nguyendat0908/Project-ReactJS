@@ -47,9 +47,9 @@ const ManageUser = () => {
                     </button>
                 </div>
                 <div className="table-users-container">
-                    <TableUser 
-                    listUsers={listUsers}
-                    handleClickBtnUpdate={handleClickBtnUpdate} 
+                    <TableUser
+                        listUsers={listUsers}
+                        handleClickBtnUpdate={handleClickBtnUpdate}
                     />
                 </div>
                 <ModalCreateUser
@@ -61,6 +61,7 @@ const ManageUser = () => {
                     show={showModalUpdateUser}
                     setShow={setShowModalUpdateUser}
                     dataUpdate={dataUpdate}
+                    fetchListUsers={fetchListUsers}
                 />
             </div>
         </div>
