@@ -23,4 +23,8 @@ const putUpdateUser = (id, username, role, image) => {
     return instance.put('api/v1/participant', data)
 }
 
-export { postCreateUser, getAllUsers, putUpdateUser }
+const deleteUser = (userId) => {
+    return instance.delete('api/v1/participant', {data: {id: userId}})
+}
+
+export { postCreateUser, getAllUsers, putUpdateUser, deleteUser }
