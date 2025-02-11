@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 
 const ModalUpdateUser = (props) => {
-    const { show, setShow, dataUpdate } = props;
+    const { show, setShow, dataUpdate, currentPage } = props;
 
     const handleClose = () => {
         setShow(false)
@@ -62,7 +62,7 @@ const ModalUpdateUser = (props) => {
         if (data && data.EC === 0) {
             toast.success(data.EM);
             handleClose();
-            await props.fetchListUsers();
+            await props.fetchListUsersWithPaginate(currentPage);
         } else {
             toast.error(data.EM);
         }
