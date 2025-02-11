@@ -53,5 +53,20 @@
                 color: rgb(101, 93, 103);
             }
         }
+
+        .password-input {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            position: relative;
+
+            .icon-eye {
+                position: absolute;
+                right: 10px;
+                top: 15px;
+                cursor: pointer;
+                font-size: larger;
+            }
+        }
     }
 }
