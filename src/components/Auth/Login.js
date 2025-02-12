@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
+import { ImSpinner10 } from "react-icons/im";
 
 
 const Login = (props) => {
@@ -15,6 +17,7 @@ const Login = (props) => {
     const [isShowPassword, setIsShowPassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch(); // Get dispatch function from useDispatch hook
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const validateEmail = (email) => {
@@ -36,15 +39,18 @@ const Login = (props) => {
             toast.error('Password is required');
             return;
         }
+        setIsLoading(true);
         // Call API to login
         let data = await postLogin(email, password);
         if (data && data.EC === 0) {
-            dispatch({type: 'FETCH_USER_LOGIN_SUCCESS', payload: data})
+            dispatch(doLogin(data));
             toast.success(data.EM);
+            setIsLoading(false);
             navigate('/');
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM);
+            setIsLoading(false);
         }
     }
 
@@ -78,7 +84,10 @@ const Login = (props) => {
                 </div>
                 <span className='forgot-password'>Forgot password?</span>
                 <div>
-                    <button className='btn-submit' onClick={() => { handleLogin() }}>Login</button>
+                    <button className='btn-submit' onClick={() => { handleLogin() }} disabled={isLoading}>
+                        {isLoading === true && <ImSpinner10 className='loader-icon'/> }
+                        <span>Log in</span>
+                    </button>
                 </div>
                 <div className='text-center'>
                     <span className='back-home' onClick={() => { navigate('/') }}> Go to home page</span>
