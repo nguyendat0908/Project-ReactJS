@@ -5,6 +5,7 @@ import { postLogin } from '../../services/ApiService';
 import { toast } from 'react-toastify';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
 
 
 const Login = (props) => {
@@ -13,6 +14,8 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
     const [isShowPassword, setIsShowPassword] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch(); // Get dispatch function from useDispatch hook
+
 
     const validateEmail = (email) => {
         return String(email)
@@ -36,6 +39,7 @@ const Login = (props) => {
         // Call API to login
         let data = await postLogin(email, password);
         if (data && data.EC === 0) {
+            dispatch({type: 'FETCH_USER_LOGIN_SUCCESS', payload: data})
             toast.success(data.EM);
             navigate('/');
         }
