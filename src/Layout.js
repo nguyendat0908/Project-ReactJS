@@ -24,7 +24,7 @@ const NotFound = () => {
                 <p className="lead">
                     The page you’re looking for doesn’t exist.
                 </p>
-                <button onClick={() => {navigate('/')}}  className="btn btn-primary">Go Home</button>
+                <button onClick={() => { navigate('/') }} className="btn btn-primary">Go Home</button>
             </div>
         </div>
     )

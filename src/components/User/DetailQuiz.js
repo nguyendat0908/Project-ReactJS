@@ -1,11 +1,13 @@
-import { use, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { getDataQuiz } from "../../services/ApiService";
 import _ from 'lodash';
+import './DetailQuiz.scss';
 
 const DetailQuiz = (props) => {
 
     const params = useParams();
+    const location = useLocation();
     const quizId = params.id;
 
     useEffect(() => {
@@ -26,7 +28,7 @@ const DetailQuiz = (props) => {
                     if (index === 0) {
                         questionsDescription = item.description;
                         image = item.image;
-                        
+
                     }
                     answers.push(item.answers)
                 })
@@ -34,13 +36,38 @@ const DetailQuiz = (props) => {
             })
                 .value();
         }
-
-        return (
-            <div className="detail-quiz-container container">
-                Detail Quiz
-            </div>
-        )
     }
+
+    return (
+        <div className="detail-quiz-container">
+            <div className="left-content">
+                <div className="title">
+                    Quiz {quizId}: {location?.state?.quizTitle}
+                </div>
+                <hr/>
+                <div className="quiz-body">
+                    <img />
+                </div>
+                <div className="quiz-content">
+                    <div className="question">Question 1: How are you doing?</div>
+                    <div className="answer">
+                        <div className="a-child">A. Test a</div>
+                        <div className="a-child">A. Test a</div>
+                        <div className="a-child">A. Test a</div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div className="footer">
+                    <button className="btn btn-primary">Prev</button>
+                    <button className="btn btn-secondary">Next</button>
+                </div>
+            </div>
+            <div className="right-content">
+                Count down
+            </div>
+        </div>
+    )
 }
 
 export default DetailQuiz;
