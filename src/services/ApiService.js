@@ -1,3 +1,4 @@
+import { data } from 'react-router-dom';
 import instance from '../utils/AxiosCustomize';
 
 const postCreateUser = (email, password, username, role, image) => {
@@ -47,4 +48,9 @@ const getDataQuiz = (id) => {
     return instance.get(`api/v1/questions-by-quiz?quizId=${id}`)
 }
 
-export { postCreateUser, getAllUsers, putUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser, getDataQuiz }
+const postSubmitQuiz = (data) => {
+    console.log("... Data check: ", {...data})
+    return instance.post('api/v1/quiz-submit', {...data})
+}
+
+export { postCreateUser, getAllUsers, putUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz }
