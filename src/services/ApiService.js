@@ -25,7 +25,7 @@ const putUpdateUser = (id, username, role, image) => {
 }
 
 const deleteUser = (userId) => {
-    return instance.delete('api/v1/participant', {data: {id: userId}})
+    return instance.delete('api/v1/participant', { data: { id: userId } })
 }
 
 const getUserWithPaginate = (page, limit) => {
@@ -33,11 +33,11 @@ const getUserWithPaginate = (page, limit) => {
 }
 
 const postLogin = (userEmail, userPassword) => {
-    return instance.post('api/v1/login', {email: userEmail, password: userPassword})
+    return instance.post('api/v1/login', { email: userEmail, password: userPassword })
 }
 
 const postRegister = (userEmail, userPassword, username) => {
-    return instance.post('api/v1/register', {email: userEmail, password: userPassword, username: username})
+    return instance.post('api/v1/register', { email: userEmail, password: userPassword, username: username })
 }
 
 const getQuizByUser = () => {
@@ -49,8 +49,17 @@ const getDataQuiz = (id) => {
 }
 
 const postSubmitQuiz = (data) => {
-    console.log("... Data check: ", {...data})
-    return instance.post('api/v1/quiz-submit', {...data})
+    console.log("... Data check: ", { ...data })
+    return instance.post('api/v1/quiz-submit', { ...data })
 }
 
-export { postCreateUser, getAllUsers, putUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz }
+const postCreateNewQuiz = (description, name, difficulty, image) => {
+    const data = new FormData();
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', image);
+    return instance.post('api/v1/quiz', data)
+}
+
+export { postCreateUser, getAllUsers, putUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz, postCreateNewQuiz }
