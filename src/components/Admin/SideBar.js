@@ -42,7 +42,7 @@ const SideBar = (props) => {
                         }}
                     >
                         <DiReact size={'3em'} color={"00bfff"} />
-                        <span onClick={() => {navigate('/')}}>
+                        <span onClick={() => { navigate('/') }}>
                             DatLeo
                         </span>
                     </div>
@@ -69,7 +69,10 @@ const SideBar = (props) => {
                                 Quản lý bài Quiz
                                 <Link to="/admins/manage-quizzes" />
                             </MenuItem>
-                            <MenuItem>Quản lý câu hỏi</MenuItem>
+                            <MenuItem>
+                                Quản lý câu hỏi
+                                <Link to="/admins/manage-questions" />
+                            </MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
